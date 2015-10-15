@@ -1,7 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
 PRIVATE_INCLUDE_PATH := $(LOCAL_PATH)/private_include
-PUBLIC_INCLUDE_PATH := $(LOCAL_PATH)/public_include
 LOCAL_TEST_SOURCE_PATH := test
 LOCAL_LIBS_PATH := libs
 
@@ -21,15 +20,79 @@ LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libqmiservices.so
 include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := cutils
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libcutils.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := diag
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libdiag.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := dsutils
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libdsutils.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := idl
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libidl.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := qmi_client_qmux
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libqmi_client_qmux.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mdmdetect
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libmdmdetect.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := utils
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libutils.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := backtrace
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libbacktrace.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := stlport
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libstlport.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := gccdemangle
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libgccdemangle.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := unwind
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libunwind.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := unwind-ptrace
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libunwind-ptrace.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := c
+LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libc.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := qmi-nas-test
 LOCAL_CFLAGS += -DFEATURE_DSS_LINUX_ANDROID
 LOCAL_CFLAGS += -DFEATURE_QMI_ANDROID
-LOCAL_C_INCLUDES += $(PUBLIC_INCLUDE_PATH)
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/core
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/platform
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/qmi
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/services
 LOCAL_SRC_FILES += $(LOCAL_TEST_SOURCE_PATH)/app.c
-LOCAL_SHARED_LIBRARIES := qmi qcci_legacy qmiservices
+LOCAL_SHARED_LIBRARIES := qmi qcci_legacy qmiservices cutils diag dsutils idl qmi_client_qmux mdmdetect utils backtrace stlport gccdemangle unwind unwind-ptrace c
 include $(BUILD_EXECUTABLE)
