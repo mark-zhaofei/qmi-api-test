@@ -2,6 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 PRIVATE_INCLUDE_PATH := $(LOCAL_PATH)/private_include
 LOCAL_TEST_SOURCE_PATH := test
+LOCAL_SOURCE_PATH := src
 LOCAL_LIBS_PATH := libs
 
 include $(CLEAR_VARS)
@@ -85,7 +86,7 @@ LOCAL_SRC_FILES := $(LOCAL_LIBS_PATH)/$(TARGET_ARCH_ABI)/libc.so
 include $(PREBUILT_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := qmi-nas-test
+LOCAL_MODULE := voice_service
 LOCAL_CFLAGS += -DFEATURE_DSS_LINUX_ANDROID
 LOCAL_CFLAGS += -DFEATURE_QMI_ANDROID
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)
@@ -93,6 +94,17 @@ LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/core
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/platform
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/qmi
 LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/services
-LOCAL_SRC_FILES += $(LOCAL_TEST_SOURCE_PATH)/app.c
+LOCAL_SRC_FILES += $(LOCAL_SOURCE_PATH)/voice_service.c
 LOCAL_SHARED_LIBRARIES := qmi qcci_legacy qmiservices cutils diag dsutils idl qmi_client_qmux mdmdetect utils backtrace stlport gccdemangle unwind unwind-ptrace c
+include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := idl_version_checker
+LOCAL_CFLAGS += -DFEATURE_DSS_LINUX_ANDROID
+LOCAL_CFLAGS += -DFEATURE_QMI_ANDROID
+LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)
+LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/core
+LOCAL_C_INCLUDES += $(PRIVATE_INCLUDE_PATH)/qcom/services
+LOCAL_SRC_FILES += $(LOCAL_TEST_SOURCE_PATH)/idl_version_checker.c
+LOCAL_SHARED_LIBRARIES := qmiservices idl
 include $(BUILD_EXECUTABLE)
