@@ -11,7 +11,7 @@ int main(int argc, const char ** argv){
     for(idl_minor = 0;idl_minor <= 0xFF;idl_minor++){
     	idl_service_obj = nas_get_service_object_internal_v01(0x01, idl_minor, 0x06);
     	if(idl_service_obj != NULL){
-    		printf("NAS IDL minor version found %d\n", idl_minor);
+    		printf("NAS IDL minor version found 0x%X\n", idl_minor);
     		break;
     	}
     }
@@ -21,7 +21,7 @@ int main(int argc, const char ** argv){
     for(idl_minor = 0;idl_minor <= 0xFF;idl_minor++){
     	idl_service_obj = uim_get_service_object_internal_v01(0x01, idl_minor, 0x06);
     	if(idl_service_obj != NULL){
-    		printf("UIM IDL minor version found %d\n", idl_minor);
+    		printf("UIM IDL minor version found 0x%X\n", idl_minor);
     		break;
     	}
     }
@@ -29,9 +29,9 @@ int main(int argc, const char ** argv){
     	printf("UIM IDL minor version exceeds 0xFF\n");
     }
     for(idl_minor = 0;idl_minor <= 0xFF;idl_minor++){
-    	idl_service_obj = voice_get_service_object_internal_v02(0x01, idl_minor, 0x06);
+    	idl_service_obj = voice_get_service_object_internal_v02(0x02, idl_minor, 0x06);
     	if(idl_service_obj != NULL){
-    		printf("Voice IDL minor version found %d\n", idl_minor);
+    		printf("Voice IDL minor version found 0x%X\n", idl_minor);
     		break;
     	}
     }
